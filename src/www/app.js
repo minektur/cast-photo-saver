@@ -5,6 +5,7 @@ function init() {
         //castReceiverManager.start({maxInactivity: 600});
         window.castReceiverManager.start();
     }
+    new_img();
     setInterval('new_img();',12000);
 }
 
