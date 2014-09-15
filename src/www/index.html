@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>castphotosaver</title>
+    <script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"> </script>
+    <script type="text/javascript" src="/app.js"> </script>
+  </head>
+  <style type="text/css">
+    div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: all 0.25 ease-in 0;
+    }
+    body {
+      background-color: #000000;
+    }
+    .showing {
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  <body onload="init();">
+    <div  class="showing" id="one"> </div>
+  </body>
+</html>

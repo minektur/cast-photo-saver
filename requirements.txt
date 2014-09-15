@@ -1,0 +1,4 @@
+protobuf>=2.60
+pychromecast>=0.5.1
+bottle>=0.12.7
+daemon>=1.1
