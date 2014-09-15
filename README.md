@@ -17,6 +17,9 @@ photo screen saver for chromecast
   * javascript instead of css?
   * transcode images to lower res on the fly
   * load pre-rendered html5 snippets?
+  * turn the whole thing into hardware accelerated stream?
+  * 3d transforms?
+  * requestanimationframe magic on my own?
   
 
 ## still left
