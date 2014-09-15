@@ -1,4 +1,4 @@
-protobuf>=2.60
+protobuf>=2.6.0
 pychromecast>=0.5.1
 bottle>=0.12.7
 daemon>=1.1
