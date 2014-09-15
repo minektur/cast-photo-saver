@@ -9,11 +9,8 @@ import sys, os
 import json
 #from hexdump import hexdump
 
-request_id = os.getpid()
-
-#chromecast_server = "192.168.0.127"
 chromecast_server = "192.168.0.138"
-#chromecast_server = "127.0.0.1"
+app_id = "C859FB6A"
 
 namespace = {'con':        'urn:x-cast:com.google.cast.tp.connection',
              'receiver':   'urn:x-cast:com.google.cast.receiver',
@@ -92,7 +89,7 @@ soc.sendall(message)
 
 print "Sending Launch App"
 msg.namespace = namespace['receiver']
-msg.payload_utf8 = """{"type":"LAUNCH","requestId":%s,"appId":"C859FB6A"}""" % (request_id)
+msg.payload_utf8 = """{"type":"LAUNCH","requestId":%s,"appId":app_id}""" % (request_id)
 message = format_msg(msg)
 soc.sendall(message)
 #hexdump(message)
