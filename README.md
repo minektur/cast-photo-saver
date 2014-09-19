@@ -71,6 +71,7 @@ Ideas:
   * requestanimationframe magic on my own?
   * see <https://plus.google.com/110558071969009568835/posts/NMDm5mDhm6J> for more ideas
   * <http://www.paulirish.com/2012/why-moving-elements-with-translate-is-better-than-posabs-topleft/>
+  * non-video elements restricted to 720P  <https://plus.google.com/u/0/+AlbinEkblom/posts/JDhtJTw7jz5>
 
   
 
