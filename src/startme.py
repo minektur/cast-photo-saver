@@ -9,7 +9,9 @@ import sys, os
 import json
 #from hexdump import hexdump
 
-chromecast_server = "192.168.0.138"
+request_id = os.getpid()
+
+chromecast_server = "192.168.0.127"
 app_id = "C859FB6A"
 
 namespace = {'con':        'urn:x-cast:com.google.cast.tp.connection',
@@ -44,6 +46,7 @@ def read_message(soc):
     #first 4 bytes is Big-Endian payload length
     data = ""
     while len(data) < 4:
+        print(".")
         frag = soc.recv(1)
         data += frag
     read_len = unpack(">I", data)[0]
@@ -52,11 +55,9 @@ def read_message(soc):
     while len(data) < read_len:
         frag = soc.recv(2048)
         data += frag
-#        print "."
     return data
 
 def get_response(soc):
-    print "\nReading ..."
     #get the data
     payload = read_message(soc)
     response = make_msg()
@@ -80,12 +81,15 @@ soc = ssl.wrap_socket(soc)
 soc.connect((chromecast_server, 8009))
 msg = make_msg()
 
-print "Connecting ..."
+print ("Connecting ...")
 msg.namespace = namespace['con']
 msg.payload_utf8 = """{"type":"CONNECT","origin":{}}"""
 message = format_msg(msg)
 soc.sendall(message)
 #hexdump(message)
+
+print ("resp")
+resp = get_response(soc)
 
 print "Sending Launch App"
 msg.namespace = namespace['receiver']
