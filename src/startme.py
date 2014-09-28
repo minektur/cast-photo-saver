@@ -46,7 +46,7 @@ def read_message(soc):
     #first 4 bytes is Big-Endian payload length
     data = ""
     while len(data) < 4:
-        print(".")
+        #print(".")
         frag = soc.recv(1)
         data += frag
     read_len = unpack(">I", data)[0]
@@ -63,7 +63,7 @@ def get_response(soc):
     response = make_msg()
     response.ParseFromString(payload)
     resp = json.loads(response.payload_utf8)
-    print json.dumps(resp, indent=4)
+#    print json.dumps(resp, indent=4)
     return resp
 
 def send_pong(soc):
@@ -74,26 +74,22 @@ def send_pong(soc):
     soc.sendall(message)
 
 
-
 ##################################################
 soc = socket.socket()
 soc = ssl.wrap_socket(soc)
 soc.connect((chromecast_server, 8009))
 msg = make_msg()
 
-print ("Connecting ...")
-msg.namespace = namespace['con']
+print "Connecting ..."
+msg.namespace=namespace['con']
 msg.payload_utf8 = """{"type":"CONNECT","origin":{}}"""
 message = format_msg(msg)
 soc.sendall(message)
 #hexdump(message)
 
-print ("resp")
-resp = get_response(soc)
-
 print "Sending Launch App"
 msg.namespace = namespace['receiver']
-msg.payload_utf8 = """{"type":"LAUNCH","requestId":%s,"appId":app_id}""" % (request_id)
+msg.payload_utf8 = """{"type":"LAUNCH","requestId":%s,"appId":%s}""" % (request_id, app_id)
 message = format_msg(msg)
 soc.sendall(message)
 #hexdump(message)
@@ -110,3 +106,7 @@ try:
             send_pong(soc)
 finally:
     soc.close
+
+
+
+
